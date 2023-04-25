@@ -5,11 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private float horizontal;
-    
-    private float speed = 8f;
-    
-    private float jumpForce = 16f;
-    
+    private float speed = 6f;
+    private float jumpForce = 12f;
     private bool facingRight = true;
 
     [SerializeField] private Rigidbody2D rb;
@@ -41,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool IsGrounded()
     {
-        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer); //creates a circle with radius of .2 centered on groundcheck(touchgrass) that checks if it's touching groundlayer
     }
     
     private void Flip()
