@@ -12,8 +12,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
-    
-    
+    [SerializeField] private Transform cornerpos;
+    [SerializeField] private Transform cornerJumpLimit;
     // Update is called once per frame
     void Update()
     {
