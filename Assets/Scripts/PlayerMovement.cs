@@ -9,15 +9,11 @@ public class playerMovement : MonoBehaviour
     private float jumpForce = 12f;
     private bool facingRight = true;
     private bool isWalking = false;
+    private bool isSwinging = false; // added boolean to detect left click being held down
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
-    
-    // Dirt breaking variables
-    public float breakRadius = 2.0f; // radius of circle in front of player where dirt blocks will be broken
-    public LayerMask breakableLayer; // layer containing dirt blocks that can be broken
-
 
     // Update is called once per frame
     void Update()
@@ -34,6 +30,16 @@ public class playerMovement : MonoBehaviour
         if (Input.GetButtonUp("Jump") && IsGrounded() && rb.velocity.y > 0f)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f); // small jump
+        }
+
+        // check if left click is being held down
+        if (Input.GetMouseButton(0))
+        {
+            isSwinging = true;
+        }
+        else
+        {
+            isSwinging = false;
         }
         
         Flip();
@@ -76,4 +82,5 @@ public class playerMovement : MonoBehaviour
         }
     }
 }
+
 
