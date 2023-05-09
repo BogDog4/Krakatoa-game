@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 2563656055556822937}
   - component: {fileID: 3487882580392575587}
   - component: {fileID: 6193829012485233351}
+  - component: {fileID: 7389209018466792834}
+  - component: {fileID: 4626025404292999918}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -101,6 +103,10 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  breakRadius: 2
+  breakableLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!95 &3487882580392575587
 Animator:
   serializedVersion: 4
@@ -173,6 +179,34 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7389209018466792834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2563656055556822928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 800b71198ade60d4780493ecd0812bc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelPrefab: {fileID: 0}
+  levelHeight: 20
+--- !u!114 &4626025404292999918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2563656055556822928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f1de8d3cf2cf1e4fa2fa933e987ac2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lavaPrefab: {fileID: 1534541981843563651, guid: 627a7e50a0efd624a99cb7c59368698c, type: 3}
+  spawnInterval: 4
 --- !u!1 &2563656056807189207
 GameObject:
   m_ObjectHideFlags: 0

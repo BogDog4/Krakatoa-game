@@ -13,6 +13,11 @@ public class playerMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
+    
+    // Dirt breaking variables
+    public float breakRadius = 2.0f; // radius of circle in front of player where dirt blocks will be broken
+    public LayerMask breakableLayer; // layer containing dirt blocks that can be broken
+
 
     // Update is called once per frame
     void Update()
