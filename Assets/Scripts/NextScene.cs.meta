@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: 9f1de8d3cf2cf1e4fa2fa933e987ac2b
+guid: 37f72e839acaffe498cdcd6534b2d411
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - lavaPrefab: {fileID: 1534541981843563651, guid: 627a7e50a0efd624a99cb7c59368698c, type: 3}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

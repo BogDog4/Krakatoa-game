@@ -1,15 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private float horizontal;
-    private float speed = 6f;
-    private float jumpForce = 12f;
+    private float horizontalV;
+    public float speed = 6f;
+    public float jumpForce = 12f;
     private bool facingRight = true;
-    private bool isWalking = false;
-    private bool isSwinging = false; // added boolean to detect left click being held down
+
+    public Animator animator;
+
+    public Transform attackPoint;
+    public float attackRange = 0.5f;
+
+    public GameObject attackPrefab;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
@@ -18,37 +24,21 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        horizontal = Input.GetAxisRaw("horizontal");
-        
-        isWalking = Mathf.Abs(horizontal) > 0.2f; // checks if the player is moving at least .2
+        horizontalV = Input.GetAxisRaw("horizontal");
+        animator.SetFloat("InputH", Mathf.Abs(horizontalV));
+        rb.velocity = new Vector2(horizontalV * speed, rb.velocity.y);
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
 
-        if (Input.GetButtonUp("Jump") && IsGrounded() && rb.velocity.y > 0f)
+        if (Input.GetMouseButtonDown(0))
         {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f); // small jump
+            Attack();
         }
 
-        // check if left click is being held down
-        if (Input.GetMouseButton(0))
-        {
-            isSwinging = true;
-        }
-        else
-        {
-            isSwinging = false;
-        }
-        
         Flip();
-    }
-
-    private void FixedUpdate()
-    {
-        //set the X component of rigidbody velocity to the horiz input times speed value (8)
-        rb.velocity = new Vector3(horizontal * speed, rb.velocity.y);
     }
 
     private bool IsGrounded()
@@ -56,28 +46,21 @@ public class PlayerMovement : MonoBehaviour
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
 
-    public bool IsJumping()
+    void Attack()
     {
-        bool jumping = rb.velocity.y > 0f;
-        Debug.Log("IsJumping: " + jumping);
-        return jumping;
-    }
+        animator.SetTrigger("Swing");
 
-    public bool IsFalling()
-    {
-        bool falling = rb.velocity.y < 0f && !IsGrounded();
-        Debug.Log("IsFalling: " + falling);
-        return falling;
+        Instantiate(attackPrefab, attackPoint.position, Quaternion.identity);
+        Debug.Log("Attack prefab instantiated!");
     }
 
     private void Flip()
     {
-        //if your facing right and pressing left, or vice versa, flip.
-        if (facingRight && horizontal < 0 || !facingRight && horizontal > 0f)
+        if (facingRight && horizontalV < 0 || !facingRight && horizontalV > 0f)
         {
-            facingRight = !facingRight; //when flip is initiated, set facingright to true/false
+            facingRight = !facingRight;
             Vector3 localScale = transform.localScale;
-            localScale.x *= -1f; //flip the whole player prefab backwards
+            localScale.x *= -1f;
             transform.localScale = localScale;
         }
     }

@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - solidGround
+  - Breakable
+  - SectionHeader
+  - SectionFooter
   layers:
   - Default
   - TransparentFX
@@ -14,7 +17,7 @@ TagManager:
   - UI
   - GroundL
   - Breakable
-  - 
+  - Lava
   - 
   - 
   - 
