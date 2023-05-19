@@ -35,26 +35,28 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            Attack();
+            StartCoroutine(AttackWithDelay(0.2f));
         }
 
         Flip();
     }
 
-    private bool IsGrounded()
-    {
-        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
-    }
-
-    void Attack()
+    IEnumerator AttackWithDelay(float delay)
     {
         animator.SetTrigger("Swing");
+
+        yield return new WaitForSeconds(delay);
 
         Instantiate(attackPrefab, attackPoint.position, Quaternion.identity);
         Debug.Log("Attack prefab instantiated!");
     }
-
+    
+    private bool IsGrounded()
+    {
+        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+    }
     private void Flip()
+    
     {
         if (facingRight && horizontalV < 0 || !facingRight && horizontalV > 0f)
         {

@@ -14,9 +14,9 @@ public class LavaSpawner : MonoBehaviour {
     }
 
     private void SpawnLava() {
-        // generate random x and y positions within 10 units of the player
-        float x = Random.Range(transform.position.x - 10f, transform.position.x + 10f);
-        float y = Random.Range(transform.position.y - 10f, transform.position.y + 10f);
+        // generate random x and y positions
+        float x = Random.Range(transform.position.x - 8f, transform.position.x + 8f);
+        float y = Random.Range(transform.position.y - 1f, transform.position.y + 8f);
 
         // Round the positions to the nearest whole number
         x = Mathf.Round(x);
